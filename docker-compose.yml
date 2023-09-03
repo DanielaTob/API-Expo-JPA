@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  mysql:
+    container_name: mysql_super_heroes
+    image: mysql:8.0.33
+    volumes:
+      - ./db/create_schema.sql:/docker-entrypoint-initdb.d/create_schema.sql
+      - ./db/data.sql:/docker-entrypoint-initdb.d/data.sql
+    ports:
+      - "3308:3306"
+    hostname: VIP
+    environment:
+      MYSQL_DATABASE: 'Superheroes_db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: '1234'
+      MYSQL_ROOT_PASSWORD: 'root'
